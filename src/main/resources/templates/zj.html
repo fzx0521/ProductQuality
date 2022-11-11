@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>质检操作</h1>
+    <form action="http://localhost:8080/xg" th:each="z:${zhij}">
+        名称：<input type="text" th:value="${z.getProductName()}" name="productName"> <br>
+        质检结果：
+                <select name="score" id="score">
+                    <option name="score" th:value="${z.getScore()}" th:if="${z.getScore()==0}">未质检</option>
+                    <option name="score" th:value="${z.getScore()}" th:if="${z.getScore()==1}">合格</option>
+                    <option name="score" th:value="${z.getScore()}" th:if="${z.getScore()==2}">不合格</option>
+                    <option value="1">合格</option>
+                    <option value="2">不合格</option>
+                </select>
+        <button type="submit">
+            <input type="hidden" name="id" th:value="${z.getId()}">
+            保存
+        </button>
+    </form>
+</body>
+</html>

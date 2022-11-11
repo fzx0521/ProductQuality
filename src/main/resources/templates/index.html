@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form method="get" action="http://localhost:8080">
+        <p style="text-align: center">
+            产品名称：
+            <input type="text" th:value="${conditions}" name="conditions"/>
+            <button type="submit">查询</button>
+            <a href="http://localhost:8080/insert">添加产品</a>
+        </p>
+    </form>
+    <table border="1" align="center" style="text-align: center">
+        <thead>
+            <tr style="background-color: deeppink">
+                <td colspan="7">
+                    <h1>产品信息列表</h1>
+                </td>
+            </tr>
+        <tr style="background-color: #7092BF">
+            <td>产品名称</td>
+            <td>生产日期</td>
+            <td>产品描述</td>
+            <td>质检结果</td>
+            <td>生产数量</td>
+            <td>产品价格</td>
+            <td>操作</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="product,indexScop:${PageInfo.list}" th:style="${indexScop.index%2==1?'background-color:#b97a57':''}">
+            <td th:text="${product.getProductName()}"></td>
+            <td th:text="${product.getProductDate()}"></td>
+            <td th:text="${product.getProductDesc()}"></td>
+            <td th:if="${product.getScore()==0}">未质检</td>
+            <td th:if="${product.getScore()==1}">合格</td>
+            <td th:if="${product.getScore()==2}">不合格</td>
+            <td th:text="${product.getProductSum()}"></td>
+            <td th:text="${product.getProductPrice()}"></td>
+            <td>
+                <a th:href="'http://localhost:8080/zj/'+${product.id}">质检</a>
+                <a th:href="'http://localhost:8080/delete/'+${product.id}">删除</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <p style="text-align: center" th:if="${conditions==''}">
+        <a href="http://localhost:8080?pageNum=1">首页</a>
+        <a th:href="'http://localhost:8080?pageNum='+${PageInfo.prePage}">上一页</a>
+        <a th:href="'http://localhost:8080?pageNum='+${PageInfo.nextPage}">下一页</a>
+        <a th:href="'http://localhost:8080?pageNum='+${PageInfo.pages}">尾页</a>
+    </p>
+    <p style="text-align: center" th:if="${conditions!=''}">
+        <a th:href="'http://localhost:8080?pageNum=1&conditions='+${conditions}">首页</a>
+        <a th:href="'http://localhost:8080?pageNum='+${PageInfo.prePage}+'&conditions='+${conditions}">上一页</a>
+        <a th:href="'http://localhost:8080?pageNum='+${PageInfo.nextPage}+'&conditions='+${conditions}">下一页</a>
+        <a th:href="'http://localhost:8080?pageNum='+${PageInfo.pages}+'&conditions='+${conditions}">尾页</a>
+    </p>
+</body>
+</html>

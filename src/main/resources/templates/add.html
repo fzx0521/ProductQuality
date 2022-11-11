@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <form method="post" action="http://localhost:8080/add">
+    <table>
+      <thead>
+      <tr style="background-color: deeppink">
+        <td>
+          <h1>添加产品信息</h1>
+        </td>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>产品名称 <span style="color: red">(*)</span>:</td>
+        <td>
+          <input type="text" name="productName">
+        </td>
+      </tr>
+      <tr>
+        <td>产品描述:</td>
+        <td>
+          <textarea name="productDesc"></textarea>
+        </td>
+      </tr>
+      <tr>
+        <td>生产数量:</td>
+        <td>
+          <input type="number" name="productSum">
+        </td>
+      </tr>
+      <tr>
+        <td>产品价格:</td>
+        <td>
+          <input type="number" name="productPrice">
+        </td>
+      </tr>
+      <tr>
+        <td>生产日期 <span style="color: red">(*)</span>:</td>
+        <td>
+          <input type="date" name="productDate">
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <button type="submit">提交</button>
+          <a href="http://localhost:8080"><button>返回</button></a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </form>
+</body>
+</html>

@@ -1,0 +1,21 @@
+#数据源
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    #数据链接路径
+    #jdbc：mysql://==协议头
+    #ip地址+端口号
+    #数据库名称
+    url: jdbc:mysql://localhost:3306/products?serverTimezone=Asia/Shanghai
+    username: root
+    password: fzx2004521
+
+#导入映射文件
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+
+#分页配置
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
